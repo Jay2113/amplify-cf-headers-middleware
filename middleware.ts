@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextRequest } from "next/server";
 
 // The country to restrict from caching
 const RESTRICTED_COUNTRY = "US";
@@ -19,9 +19,11 @@ export function middleware(request: NextRequest) {
 
   console.log(`Visitor from ${country}`);
 
+  const response = NextResponse.next();
+
   // Specify the correct route based on the requests location
   if (country === RESTRICTED_COUNTRY) {
-    requestHeaders.set("Cache-Control", "no-store, max-age=0");
+    response.headers.set("Cache-Control", "no-store");
     return NextResponse.rewrite(new URL("/restrict", request.url));
   }
 }
