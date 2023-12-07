@@ -21,7 +21,7 @@ export function middleware(request: NextRequest) {
 
   // Specify the correct route based on the requests location
   if (country === RESTRICTED_COUNTRY) {
-    requestHeaders.set("Cache-Control", "no-cache");
+    requestHeaders.set("Cache-Control", "no-store, max-age=0");
     return NextResponse.rewrite(new URL("/restrict", request.url));
   }
 }
