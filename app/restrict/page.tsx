@@ -11,5 +11,6 @@ async function getData() {
 export default async function Page() {
   const data = await getData();
   console.log("I have got data!");
-  return <h1>{data.full_name}</h1>;
+  //   return <h1>{data.full_name}</h1>;
+  return <h3>User is unauthorized to access this information.</h3>;
 }

@@ -25,12 +25,11 @@ export function middleware(request: NextRequest) {
 
   // Specify the correct route based on the requests location
   if (country === RESTRICTED_COUNTRY) {
+    console.log(response.headers);
     return NextResponse.rewrite(new URL("/restrict", request.url), {
       request: {
         headers: requestHeaders,
       },
     });
   }
-
-  console.log(response.headers);
 }
