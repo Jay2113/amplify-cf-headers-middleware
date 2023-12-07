@@ -9,7 +9,7 @@ export const config = {
   matcher: "/",
 };
 
-export function middleware(request: NextRequest) {
+export function middleware(request: NextRequest, response: NextResponse) {
   const requestHeaders = new Headers(request.headers);
 
   console.log(requestHeaders);
@@ -21,15 +21,14 @@ export function middleware(request: NextRequest) {
 
   console.log(`Visitor from ${country}`);
 
-  const response = NextResponse.next();
-
   // Specify the correct route based on the requests location
   if (country === RESTRICTED_COUNTRY) {
-    console.log(response.headers);
     return NextResponse.rewrite(new URL("/restrict", request.url), {
       request: {
         headers: requestHeaders,
       },
     });
   }
+  response.headers.set("Cache-Control", "no-store");
+  console.log(response.headers);
 }
