@@ -13,7 +13,7 @@ export function middleware(request: NextRequest) {
   const requestHeaders = new Headers(request.headers);
 
   console.log(requestHeaders);
-  
+
   requestHeaders.set("Cache-Control", "no-store");
 
   // Extract country
@@ -26,11 +26,11 @@ export function middleware(request: NextRequest) {
   // Specify the correct route based on the requests location
   if (country === RESTRICTED_COUNTRY) {
     return NextResponse.rewrite(new URL("/restrict", request.url), {
-        request: {
-            headers: 
-        }
+      request: {
+        headers: requestHeaders,
+      },
     });
   }
-  
+
   console.log(response.headers);
 }
