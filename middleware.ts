@@ -23,12 +23,12 @@ export function middleware(request: NextRequest, response: NextResponse) {
 
   // Specify the correct route based on the requests location
   if (country === RESTRICTED_COUNTRY) {
+    // response.headers.set("Cache-Control", "no-store");
+    // console.log(response.headers);
     return NextResponse.rewrite(new URL("/restrict", request.url), {
       request: {
         headers: requestHeaders,
       },
     });
   }
-  response.headers.set("Cache-Control", "no-store");
-  console.log(response.headers);
 }
