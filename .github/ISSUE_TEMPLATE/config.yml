@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Bug Report
+    url: https://docs.aws.amazon.com/awssupport/latest/user/case-management.html#creating-a-support-case
+    about: Reach out to the AWS Support team
+  - name: Feature Request
+    url: https://github.com/aws-amplify/amplify-hosting/issues/new?assignees=&labels=feature-request&projects=&template=1.feature_request.yaml
+    about: Share ideas for new features
+  - name: Ask a Question
+    url: https://discord.gg/amplify
+    about: Ask the community for help
